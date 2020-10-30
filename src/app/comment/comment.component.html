@@ -1,0 +1,37 @@
+<div class="container">
+  <section>
+    <div class="wrapper">
+      <div class="logo-text">
+        <a routerLink="" href="">Forum App</a>
+      </div>
+      <div class="menu">
+        <a routerLink="/comment" href="">Add post</a>
+      </div>
+    </div>
+  </section>
+  <h2>Create new post</h2>
+  <form [formGroup]="myForm"  class="example-form">
+    <mat-form-field class="example-full-width form-group">
+      <mat-label>Name:</mat-label>
+      <input class="form-control" matInput placeholder="Your name"  name="commentName" formControlName="commentName">
+    </mat-form-field>
+    <mat-form-field class="example-full-width form-group">
+      <mat-label>Post body</mat-label>
+      <input class="form-control" matInput >
+      <editor placeholder="Your comment"  name="commentBody" formControlName="commentBody" [init]="{plugins: 'link'}"></editor>
+    </mat-form-field>
+    <button class="form-button" mat-button (click)="addPost()">Add post</button>
+  </form>
+  <mat-card  *ngFor="let item of getCommentList()" class="example-card comment-field">
+    <mat-card-header>
+      <span mat-card-avatar class="example-header-image"></span>
+      <mat-card-title>{{item.commentName}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <span [innerHtml]="item.commentBody"></span>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+
+
